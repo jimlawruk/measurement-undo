@@ -1,6 +1,6 @@
-define([   
+define([
     "dojo/_base/declare",
-    "esri/config",    
+    "esri/config",
     "esri/map",
     "esri/SnappingManager",
     "esri/dijit/Measurement",
@@ -11,7 +11,7 @@ define([
     "dijit/TitlePane",
     "dijit/form/CheckBox",
     "dojo/domReady!"
-], function(
+], function (
     declare, esriConfig, Map, SnappingManager, Measurement, GeometryService
   ) {
     var _this;
@@ -46,13 +46,13 @@ define([
                 setUndoButtonDisplay(false);
             });
             measurement.on("measure", function (evt) {
-                if ((results.length > 0 && measurement.result != results[results.length-1]) || 
+                if ((results.length > 0 && measurement.result != results[results.length - 1]) ||
                     (results.length === 0 && measurement.result > 0)) {
                     results.push(measurement.result);
                     resultValues.push(measurement.resultValue.domNode.innerHTML);
                 }
-            });                       
-        },        
+            });
+        },
         undo: function () {
             //var measurement = measurement;            
             var graphics = measurement._measureGraphics;
@@ -61,7 +61,7 @@ define([
                 for (var i = 0; i < 2; i++) {
                     var graphic = graphics.pop();
                     graphicsLayer.remove(graphic)
-                }               
+                }
                 measurement._measureGraphic = graphics.slice(-1)[0];
                 measurement._inputPoints.pop();
                 if (results.length > 0) {
@@ -74,25 +74,29 @@ define([
                 } else {
                     measurement.result = 0;
                     measurement.resultValue.domNode.innerHTML = "";
-                }                
+                }
             }
-            
+
             if (graphics.length > 0) {
                 var startIndex = 0;
                 if (graphics.length > 2) {
-                    startIndex = graphics.length - 2;                    
+                    startIndex = graphics.length - 2;
                 }
-                var newStartPoint = graphics[startIndex];                
+                var newStartPoint = graphics[startIndex];
                 measurement._currentStartPt.x = newStartPoint.geometry.x;
                 measurement._currentStartPt.y = newStartPoint.geometry.y;
             }
-           
+
         },
         getMeasurementTool: function () {
             return measurement;
+        },
+        clearResult: function () {
+            measurement.clearResult();
+            setUndoButtonDisplay(false);
         }
-       
-    });    
+
+    });
 
     function setUndoButtonDisplay(trueOrFalse) {
         if (undoButton) {

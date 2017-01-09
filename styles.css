@@ -1,0 +1,36 @@
+ html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
+
+body {
+    background-color: #FFF;
+    overflow: hidden;
+    font-family: "Trebuchet MS";
+}
+
+#map {
+    border: solid 2px #808775;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    margin: 5px;
+    padding: 0px;
+}
+
+#titlePane {
+    width: 280px;
+}
+
+#measurement-container #btnUndo {
+    display:inline-block;
+    background-color: #f8f8f8;
+    border-radius: 3px;
+    border-width: 1px;
+    font-size: 14px;
+    font-family: "Trebuchet MS";
+    padding: 6px;
+    text-shadow: none;
+    margin: 0;
+}
